@@ -201,9 +201,7 @@ function animate() {
   animationHandle = requestAnimationFrame(animate)
 
   if (state.scriptedOrbit) {
-    controls.autoRotate = false
     updateScriptedOrbit()
-    controls.update()
   } else {
     controls.autoRotate = state.autoRotate
     controls.update()
@@ -292,19 +290,18 @@ function bindUI() {
     })
   }
 
-if (orbitBtn) {
-  orbitBtn.addEventListener('click', () => {
-    state.scriptedOrbit = !state.scriptedOrbit
-    state.autoRotate = false
-    controls.autoRotate = false
-  
-    orbitBtn.textContent = `Orbit Path: ${state.scriptedOrbit ? 'On' : 'Off'}`
-  
-    if (autoRotateBtn) {
-      autoRotateBtn.textContent = `Auto Rotate: ${state.autoRotate ? 'On' : 'Off'}`
-    }
-  })
-}
+  if (orbitBtn) {
+    orbitBtn.addEventListener('click', () => {
+      state.scriptedOrbit = !state.scriptedOrbit
+      state.autoRotate = false
+
+      orbitBtn.textContent = `Orbit Path: ${state.scriptedOrbit ? 'On' : 'Off'}`
+
+      if (autoRotateBtn) {
+        autoRotateBtn.textContent = `Auto Rotate: ${state.autoRotate ? 'On' : 'Off'}`
+      }
+    })
+  }
 
   if (distanceSlider) {
     distanceSlider.addEventListener('input', (event) => {
